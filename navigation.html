@@ -4,23 +4,70 @@
         <meta charset="UTF-8">
         <title>导航</title>
         <style>
+            main{
+                /* padding-top: 150px; */
+                /* border:1px solid red; */
+                border-radius: 20px;
+                width: 900px;
+                margin: 0 auto;
+                padding: 25px;
+                background-color: rgba(255, 255, 255, 0.2);
+            }
             kbd{
-                border: 1px solid red;
-                width: 40px;
-                height: 40px;
+                width: 47px;
+                height: 45px;
+                padding: 12px 12px;
+                margin: 6px 6px;
                 display: inline-block;
                 vertical-align: top;
+                box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+                background-color:#000;
+                border-radius: 8px;
+                color:#fff;
+                text-transform: uppercase;
+                position: relative;
+                font-size: 30px;
             }
             div{
                 text-align: center;
                 margin: 0 auto;
-                border: 1px solid red;
-                max-width: 700px;
+                /* border: 1px solid red; */
+                max-width: 1000px;
             }
             .clearfix::after{
                 content:"";
                 display: block;
                 clear:both;
+            }
+            body{
+                height: 100vh;
+                background: url(./img/bg.jpg) center center no-repeat;
+                background-size: cover;
+                font-size: 24px;
+            }
+            kbd:hover button{
+                display: inline;
+            }
+            kbd button{
+                display: none;
+                color:#fff;
+                background-color:gray;
+                position: absolute;
+                border-radius: 8px;
+                top:44px;
+                left: 3px;
+                font-size: 12px;
+                /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); */
+            }
+            kbd img{
+                position: absolute;
+                top:44px;
+                left: 43px;
+                width: 14px;
+                height: 14px;
+            }
+            header{
+                height: 120px;
             }
         </style>
     </head>
@@ -30,46 +77,108 @@
         <footer></footer>
     </body>
         <script>
-            var keys = {
-				'0': {0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
-				'1': {0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
-				'2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
-				'length': 3
-			};
-			var hash = {'q': 'qq.com', 'w': 'weibo.com', 'e': 'ele.me', 'r': 'renren.com', 't': 'tianya.com', 'y': 'youtube.com', 'u': 'uc.com' , 'i': 'iqiyi.com', 'o': 'opera.com', 'p': undefined, 'a': 'acfun.tv', 's': 'sohu.com', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn'
-            };
-            var hashInLocalStorage = JSON.parse(localStorage.getItem("hash") || 'null');
-            if(hashInLocalStorage){
-				hash = hashInLocalStorage;
-			}
-            for(var i=0;i<keys.length;i++){
-                var row = keys[i];
-                var div = document.createElement("div");
-                for(var f = 0;f <row.length;f++){
-                     var kbd = document.createElement("kbd");
-                     kbd.textContent = row[f];
-                     div.appendChild(kbd);
-                     var button = document.createElement("button");
-                     button.textContent = "编辑";
-                     kbd.appendChild(button);
-                     button.id = row[f];
-                    //  div.className = "clearfix";
-                    button.onclick=function(event){
-                        var buttonId = event.target.id;
-                        console.log(buttonId);
-                        var newWebSite = prompt("给我一个网址");
-                        console.log(newWebSite);
-                         hash[buttonId] = newWebSite;
-                         console.log(hash[buttonId]);
-                         localStorage.setItem("hash",JSON.stringify(hash));
-                    }
-                }
-                main.appendChild(div);
-            }
-            document.onkeypress = function(event){
-                var key = event.key;
-                window.open("http://"+hash[key],"_blank");
+            
+            //1、初始化数据
+            var HASH = init();
+            var keys = HASH.keys;
+			var hash = HASH.hash;
+           
+           //2.生成键盘
+           generateKeyboard(hash,keys);
+            
 
+            //3.监听用户动作
+            listenToUser(hash);
+            
+            
+            function init(){
+                var keys = {
+                    '0': {0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
+                    '1': {0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
+                    '2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
+                    'length': 3
+                };
+                var hash = {'q': 'qq.com', 'w': 'weibo.com', 'e': 'ele.me', 'r': 'renren.com', 't': 'tianya.com', 'y': 'youtube.com', 'u': 'uc.com' , 'i': 'iqiyi.com', 'o': 'opera.com', 'p': undefined, 'a': 'acfun.tv', 's': 'sohu.com', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn'
+                };
+                var hashInLocalStorage = JSON.parse(localStorage.getItem("hash") || 'null');
+                if(hashInLocalStorage){
+                    hash = hashInLocalStorage;
+                }
+                return {
+                    keys:keys,
+                    hash:hash
+                }
+            }
+            function createButton(id){
+                var button = document.createElement("button");
+                    button.textContent = "编辑";
+                    button.id = id;
+                    button.onclick=function(event){
+                        var button = event.target;
+                        var img = button.nextSibling;
+                        var buttonId = event.target.id;
+                        var newWebSite = prompt("给我一个网址");
+
+                        img.src = "http://" + newWebSite +"/favicon.ico";
+                        img.onerror = function(event){
+                            event.target.src = "./img/dot.png";
+                        }
+                        hash[buttonId] = newWebSite;
+                        console.log(hash[buttonId]);
+                        localStorage.setItem("hash",JSON.stringify(hash));
+                    }
+
+
+                return button;
+            }
+            function createSpan(text){
+                var span = document.createElement("span");
+                span.textContent = text;
+                return span;
+            }
+            function createImg(domain,hash){
+                var img = document.createElement("img");
+                if(domain){
+                    img.src = "http://" + domain +"/favicon.ico";
+                }else{
+                    img.src = './img/dot.png';
+                }
+                img.onerror = function(event){
+                    console.log("下载失败了 ");
+                    // console.log(event.target);
+                    event.target.src = './img/dot.png';
+                }
+                return img;
+            }
+            function generateKeyboard(hash,keys){
+                var hashInLocalStorage = JSON.parse(localStorage.getItem("hash") || 'null');
+                if(hashInLocalStorage){
+                    hash = hashInLocalStorage;
+                }
+                for(var i=0;i<keys.length;i++){
+                    var row = keys[i];
+                    var div = document.createElement("div");
+                    for(var f = 0;f <row.length;f++){
+                        var kbd = document.createElement("kbd");
+                        var button = createButton(row[f],hash);
+                        var span = createSpan(row[f]);
+                        var img = createImg(hash[row[f]],hash);
+
+                        kbd.appendChild(span);
+                        kbd.appendChild(button);
+                        kbd.appendChild(img);
+
+                        div.appendChild(kbd);
+                    }
+                    main.appendChild(div);
+                }
+            }
+            function listenToUser(hash){
+                document.onkeypress = function(event){
+                    var key = event.key;
+                    console.log(hash);
+                    window.open("http://"+hash[key],"_blank");
+                };
             }
         </script>
 </html>
