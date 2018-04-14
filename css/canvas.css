@@ -1,0 +1,21 @@
+canvas{
+  background-color: green;
+}
+*{
+  padding:0px;
+  margin:0px;
+}
+#eraser,#brush{
+  position:fixed;
+  left:0;
+  bottom:0;
+}
+.actions>#brush{
+  display: none;
+}
+.actions.e >#brush{
+  display: inline-block;
+}
+.actions.e >#eraser{
+  display: none;
+}
