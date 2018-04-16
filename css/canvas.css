@@ -3,7 +3,7 @@
   margin:0px;
 }
 canvas{
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 }
@@ -77,8 +77,8 @@ li#blue{
   background-color: black;
   margin-bottom: 33px;
 }
-.sizes #thick{
+/* .sizes #thick{
   width: 20px;
   height: 5px;
   background-color: black;
-}
+} */

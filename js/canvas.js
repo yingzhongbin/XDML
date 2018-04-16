@@ -53,30 +53,30 @@ function listenToUser(canvas){
   thin.onclick = function(){
     thin.classList.add("active");
     medium.classList.remove("active");
-    thick.classList.remove("active");
+    // thick.classList.remove("active");
     context.lineWidth = 1;
   };
   medium.onclick = function(){
     thin.classList.remove("active");
     medium.classList.add("active");
-    thick.classList.remove("active");
+    // thick.classList.remove("active");
     context.lineWidth = 3;
   };
-  thick.onclick = function(){
-    thin.classList.remove("active");
-    medium.classList.remove("active");
-    thick.classList.add("active");
-    context.lineWidth = 5;
-  };
+  // thick.onclick = function(){
+  //   thin.classList.remove("active");
+  //   medium.classList.remove("active");
+  //   thick.classList.add("active");
+  //   context.lineWidth = 5;
+  // };
   del.onclick = function(){
     context.clearRect(0,0,canvas.width,canvas.height);
   };
   download.onclick = function(){
     var a = document.createElement("a");
-    a.href = canvas.toDataURL("image/png");
+    a.href = canvas.toDataURL("image/jpeg");
     document.body.appendChild(a);
     a.download = "我的图画";
-    a.target = "_blank";
+    // a.target = "_blank";
     a.click();
   };
   if(document.body.ontouchstart === undefined){
