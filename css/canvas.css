@@ -1,21 +1,84 @@
-canvas{
-  background-color: green;
-}
 *{
   padding:0px;
   margin:0px;
 }
-#eraser,#brush{
-  position:fixed;
-  left:0;
-  bottom:0;
+canvas{
+  position: fixed;
+  top: 0;
+  left: 0;
 }
-.actions>#brush{
-  display: none;
+.actions{
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 15px;
 }
-.actions.e >#brush{
-  display: inline-block;
+.actions svg{
+  width: 1.5em;
+  height: 1.5em;
+  padding: 5px;
+  transition: all 0.3s;
 }
-.actions.e >#eraser{
-  display: none;
+.actions svg.active{
+  transform: scale(1.4);
+  fill:red;
+}
+ol,li{
+  list-style: none;
+  /* border: 1px solid red; */
+}
+.colors{
+  position: fixed;
+  top:70px;
+  left:19px;
+}
+.colors li{
+  width:28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+li#red{
+  background-color: red;
+}
+li#green{
+  background-color: green;
+}
+li#blue{
+  background-color: blue;
+}
+.colors li{
+  transition: all .3s;
+}
+.colors > .active{
+  transform: scale(1.17);
+
+}
+.sizes{
+  position: fixed;
+  top:84px;
+  right: 21px;
+}
+.sizes li{
+  transition: all .3s;
+}
+.sizes .active{
+  transform: scale(1.2);
+}
+.sizes #thin{
+  width: 20px;
+  height: 1px;
+  background-color: black;
+  margin-bottom: 35px;
+}
+.sizes #medium{
+  width: 20px;
+  height: 3px;
+  background-color: black;
+  margin-bottom: 33px;
+}
+.sizes #thick{
+  width: 20px;
+  height: 5px;
+  background-color: black;
 }
