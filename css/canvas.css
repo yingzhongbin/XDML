@@ -7,6 +7,9 @@ canvas{
   top: 0;
   left: 0;
 }
+body{
+  overflow: hidden; 
+}
 .actions{
   position: fixed;
   top: 0;
@@ -67,18 +70,18 @@ li#blue{
 }
 .sizes #thin{
   width: 20px;
-  height: 1px;
+  height: 2px;
   background-color: black;
   margin-bottom: 35px;
 }
 .sizes #medium{
   width: 20px;
-  height: 3px;
+  height: 8px;
   background-color: black;
   margin-bottom: 33px;
 }
-/* .sizes #thick{
+.sizes #thick{
   width: 20px;
-  height: 5px;
+  height: 12px;
   background-color: black;
-} */
+}

@@ -1,197 +1,201 @@
-//1.初始化数据
-var context = canvas.getContext('2d');
-var paint = false;
-var using = false;
-var style = {
-  fillStyle:undefined,
-  strokeStyle:undefined
-}
-
+//初始化数据
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
+var onDown = false;//默认不按下
+var usingEraser = false;//默认画画
+var lastPoint = {x:-100,y:-100};
+var canvaColor = "red";//默认画笔颜色
+var lineWidth = 4;//默认画笔粗细
+var eraser = document.getElementById("eraser");
+var brush = document.getElementById("brush");
+var del = document.getElementById("del");
+var download = document.getElementById("download");
 //设置画布尺寸
 autoSetCanvasSize(canvas);
 //设置画布背景
-setCanvasBgc(canvas);
-
+setCanvasBgc(context);
 //监听用户事件
 listenToUser(canvas);
 
-
-
 function listenToUser(canvas){
-  var eraserEnabled = false;
-  var paint = false;
-  var using = false;
-  var lastPoint ={
-    x:undefined,
-    y:undefined
-  };
-
-  context.fillStyle = "red";
-  context.strokeStyle = "red";
-
-  red.onclick = function(){
-    context.fillStyle = "red";
-    context.strokeStyle = "red";
-    red.classList.add("active");
-    green.classList.remove("active");
-    blue.classList.remove("active");
-  };
-  green.onclick = function(){
-    context.fillStyle = "green";
-    context.strokeStyle = "green";
-    green.classList.add("active");
-    red.classList.remove("active");
-    blue.classList.remove("active");
-  };
-  blue.onclick = function(){
-    context.fillStyle = "blue";
-    context.strokeStyle = "blue";
-    blue.classList.add("active");
-    red.classList.remove("active");
-    green.classList.remove("active");
-  };
-  thin.onclick = function(){
-    thin.classList.add("active");
-    medium.classList.remove("active");
-    // thick.classList.remove("active");
-    context.lineWidth = 1;
-  };
-  medium.onclick = function(){
-    thin.classList.remove("active");
-    medium.classList.add("active");
-    // thick.classList.remove("active");
-    context.lineWidth = 3;
-  };
-  // thick.onclick = function(){
-  //   thin.classList.remove("active");
-  //   medium.classList.remove("active");
-  //   thick.classList.add("active");
-  //   context.lineWidth = 5;
-  // };
-  del.onclick = function(){
-    context.clearRect(0,0,canvas.width,canvas.height);
-  };
-  download.onclick = function(){
-    var a = document.createElement("a");
-    a.href = canvas.toDataURL("image/jpeg");
-    document.body.appendChild(a);
-    a.download = "我的图画";
-    // a.target = "_blank";
-    a.click();
-  };
   if(document.body.ontouchstart === undefined){
-    canvas.onmousedown = function(event){
-      var x = event.clientX;
-      var y = event.clientY;
-      if(eraserEnabled){
-        using = true;
+    canvas.onmousedown = function(e){
+      var x = e.clientX;
+      var y = e.clientY;
+      onDown = true;
+      if(!usingEraser){//默认画画
+        drawArc(x,y,lineWidth/2-0.3,canvaColor);
+        // console.log(usingEraser);
       }else{
-        paint = true;
-        lastPoint = {x:x,y:y};
+        drawArc(x,y,lineWidth/2-0.3,"white");
+        // console.log(usingEraser);
       }
+      lastPoint = {x:x,y:y};
     };
-  
-    canvas.onmousemove = function(event){
-      var x = event.clientX;
-      var y = event.clientY;
-      if(eraserEnabled){
-        if(using){
-          erase(x,y);
-        }
-      }else{
-        if(paint){
-           //划线
-          var newPoint = {x:x,y:y};
-        drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y);
-          lastPoint = newPoint;
+    canvas.onmousemove = function(e){
+      var x = e.clientX;
+      var y = e.clientY;
+      if(onDown){//按下了
+        if(!usingEraser){//默认画画
+          drawArc(x,y,lineWidth/2-0.1,canvaColor);
+          drawLine(lastPoint.x,lastPoint.y,x,y,lineWidth,canvaColor);
+        }else{
+          drawArc(x,y,lineWidth/2-0.1,"white");
+          drawLine(lastPoint.x,lastPoint.y,x,y,lineWidth,"white")
         }
       }
+      lastPoint = {x:x,y:y};//更新最后一个点
     };
-  
-    canvas.onmouseup = function(event){
-      paint = false;
-      using = false;
+    canvas.onmouseup = function(e){
+      onDown = false;
     };
   }else{
-    canvas.ontouchstart = function(event){
-      var x = event.touches[0].clientX;
-      var y = event.touches[0].clientY;
-      if(eraserEnabled){
-        using = true;
+    canvas.ontouchstart = function(e){
+      var x = e.touches[0].clientX;
+      var y = e.touches[0].clientY;
+      onDown = true;
+      if(!usingEraser){//默认画画
+        drawArc(x,y,lineWidth/2-0.3,canvaColor);
+        // console.log(usingEraser);
       }else{
-        paint = true;
-        lastPoint = {x:x,y:y};
+        drawArc(x,y,lineWidth/2-0.3,"white");
+        // console.log(usingEraser);
       }
-    }
-    canvas.ontouchmove = function(event){
-      var x = event.touches[0].clientX;
-      var y = event.touches[0].clientY;
-      if(eraserEnabled){
-        if(using){
-          erase(x,y);
-        }
-      }else{
-        if(paint){
-           //划线
-          var newPoint = {x:x,y:y};
-        drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y);
-          lastPoint = newPoint;
+      lastPoint = {x:x,y:y};
+    };
+    canvas.ontouchmove = function(e){
+      var x = e.touches[0].clientX;
+      var y = e.touches[0].clientY;
+      if(onDown){//按下了
+        if(!usingEraser){//默认画画
+          drawArc(x,y,lineWidth/2-0.1,canvaColor);
+          drawLine(lastPoint.x,lastPoint.y,x,y,lineWidth,canvaColor);
+        }else{
+          drawArc(x,y,lineWidth/2-0.1,"white");
+          drawLine(lastPoint.x,lastPoint.y,x,y,lineWidth,"white")
         }
       }
-    }
-    canvas.ontouchend = function(event){
-      paint = false;
-      using = false;
-    }
-  }
+      lastPoint = {x:x,y:y};//更新最后一个点
+    };
+    canvas.ontouchend = function(e){
+      onDown = false;
+    };
+  };
   eraser.onclick = function(){
-    
-      eraserEnabled = true;
+    usingEraser = true;
     eraser.classList.add("active");
     brush.classList.remove("active");
   };
   brush.onclick = function(){
-      eraserEnabled = false;
+    usingEraser = false;
     brush.classList.add("active");
     eraser.classList.remove("active");
   };
-  
-}
+  thin.onclick = function(){
+    //设置html的class
+    thin.classList.add("active");
+    medium.classList.remove("active");
+    thick.classList.remove("active");
+    //设置画笔粗细属性
+    lineWidth = 4;
+  };
+  medium.onclick = function(){
+    //设置html的class
+    thin.classList.remove("active");
+    medium.classList.add("active");
+    thick.classList.remove("active");
+    //设置画笔粗细属性
+    lineWidth = 8;
+  };
+  thick.onclick = function(){
+    //设置html的class
+    thin.classList.remove("active");
+    medium.classList.remove("active");
+    thick.classList.add("active");
+    //设置画笔粗细属性
+    lineWidth = 12;
+  };
+  //点击清空按钮
+  del.onclick = function(){
+    context.clearRect(0,0,canvas.width,canvas.height);
+  };
+  //点击下载按钮
+  download.onclick = function(){
+    var a = document.createElement("a");
+    a.href = canvas.toDataURL("image/png");
+    document.body.appendChild(a);
+    a.download = "我的图画";
+    a.target = "_blank";
+    a.click();
+  };
+  //按压颜色按钮触发
+  red.onclick = function(){
+    //直接切换到绘画模式
+    usingEraser = false;
+    brush.classList.add("active");
+    eraser.classList.remove("active");
+    //设置html显示的class
+    red.classList.add("active");
+    green.classList.remove("active");
+    blue.classList.remove("active");
 
-function autoSetCanvasSize(canvas){
-  setCanvasSize(canvas);
-  window.onresize =function(){
-    setCanvasSize(canvas);
+    canvaColor = "red";
+  };
+  green.onclick = function(){
+    //直接切换到绘画模式
+    usingEraser = false;
+    brush.classList.add("active");
+    eraser.classList.remove("active");
+    //设置html显示的class
+    green.classList.add("active");
+    red.classList.remove("active");
+    blue.classList.remove("active");
+
+    canvaColor = "green";
+  };
+  blue.onclick = function(){
+    //直接切换到绘画模式
+    usingEraser = false;
+    brush.classList.add("active");
+    eraser.classList.remove("active");
+    //设置html显示的class
+    green.classList.remove("active");
+    red.classList.remove("active");
+    blue.classList.add("active");
+
+    canvaColor = "blue";
   };
 }
+function drawLine(x1,y1,x2,y2,lineWidth,drawColor){
+  context.beginPath();
+  context.strokeStyle = drawColor;
+  context.lineWidth = lineWidth;
+  context.moveTo(x1,y1);
+  context.lineTo(x2,y2);
+  context.stroke();
+  context.closePath();
+}
+function drawArc(x,y,radius,drawColor){
+  context.fillStyle = drawColor;
+  context.beginPath();
+  context.arc(x, y, radius, 0, Math.PI*2);
+  context.fill();
+  context.closePath();
+}
+function autoSetCanvasSize(canvas){
+    setCanvasSize(canvas);
+    window.onresize =function(){
+        setCanvasSize(canvas);
+    };
+}
+//设置画布尺寸
 function setCanvasSize(canvas){
   canvas.width = document.documentElement.clientWidth;
   canvas.height = document.documentElement.clientHeight;
 }
-
-function erase(x,y){
-  style.fillStyle = context.fillStyle;
-  style.strokeStyle = context.strokeStyle;
+//设置画布背景
+function setCanvasBgc(context){
+  //画布背景全覆盖
   context.fillStyle = "white";
-  context.strokeStyle = "white";
-  context.fillRect(x-7,y-7,14,14);
-  context.fillStyle = style.fillStyle;
-  context.strokeStyle = style.strokeStyle; 
-
-}
-function drawLine(x1,y1,x2,y2){
-    console.log(context.strokeStyle);
-    context.beginPath();
-    context.moveTo(x1,y1);
-    context.lineTo(x2,y2);
-    context.stroke();
-}
-
-function setCanvasBgc(canvas){
-  context.fillStyle = "white";
-  context.strokeStyle = "white";
   context.fillRect(0, 0, canvas.width, canvas.height);
 }
-
-
-
