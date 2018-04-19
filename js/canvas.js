@@ -27,7 +27,7 @@ function listenToUser(canvas){
         drawArc(x,y,lineWidth/2-0.3,canvaColor);
         // console.log(usingEraser);
       }else{
-        drawArc(x,y,lineWidth/2-0.3,"white");
+        drawArc(x,y,10,"white");
         // console.log(usingEraser);
       }
       lastPoint = {x:x,y:y};
@@ -40,8 +40,8 @@ function listenToUser(canvas){
           drawArc(x,y,lineWidth/2-0.1,canvaColor);
           drawLine(lastPoint.x,lastPoint.y,x,y,lineWidth,canvaColor);
         }else{
-          drawArc(x,y,lineWidth/2-0.1,"white");
-          drawLine(lastPoint.x,lastPoint.y,x,y,lineWidth,"white")
+          drawArc(x,y,10,"white");
+          drawLine(lastPoint.x,lastPoint.y,x,y,20,"white")
         }
       }
       lastPoint = {x:x,y:y};//更新最后一个点
@@ -92,6 +92,10 @@ function listenToUser(canvas){
     eraser.classList.remove("active");
   };
   thin.onclick = function(){
+    //直接切换到绘画模式
+    usingEraser = false;
+    brush.classList.add("active");
+    eraser.classList.remove("active");
     //设置html的class
     thin.classList.add("active");
     medium.classList.remove("active");
@@ -100,6 +104,10 @@ function listenToUser(canvas){
     lineWidth = 4;
   };
   medium.onclick = function(){
+    //直接切换到绘画模式
+    usingEraser = false;
+    brush.classList.add("active");
+    eraser.classList.remove("active");
     //设置html的class
     thin.classList.remove("active");
     medium.classList.add("active");
@@ -108,6 +116,10 @@ function listenToUser(canvas){
     lineWidth = 8;
   };
   thick.onclick = function(){
+    //直接切换到绘画模式
+    usingEraser = false;
+    brush.classList.add("active");
+    eraser.classList.remove("active");
     //设置html的class
     thin.classList.remove("active");
     medium.classList.remove("active");
@@ -117,7 +129,7 @@ function listenToUser(canvas){
   };
   //点击清空按钮
   del.onclick = function(){
-    context.clearRect(0,0,canvas.width,canvas.height);
+    setCanvasBgc(context);
   };
   //点击下载按钮
   download.onclick = function(){
