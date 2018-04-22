@@ -1,0 +1,406 @@
+body {
+    background: #EFEFEF;
+    margin: 0;
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight: normal;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.topNavBar.sticky {
+    padding: 10px 0px;
+    background-color: white;
+    transition: all .5s;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+.topNavBar.sticky ul>li>a{
+    color: #3d4451;
+}
+.topNavBar-inner{
+    padding: 0px 16px;
+}
+.topNavBar nav{
+    float: right;
+    padding-top: 7px;
+}
+.topNavBar nav>ul{
+    padding: 0px;
+    margin: 0px;
+    margin-bottom:3px;
+}
+.topNavBar  nav > ul > li {
+    float: left;
+    margin-left: 17px;
+    margin-right: 17px;
+  }
+.clearfix::after{
+    content:"";
+    display: block;
+    clear:both;
+}
+a{
+    text-decoration: none; 
+}
+li{
+    list-style-type: none;
+}
+.topNavBar{
+    font-family: Arial;
+    font-size: 22px;
+    padding: 20px 0px;
+    position: fixed;
+    top: 0px;
+    left:0px;
+    width: 100%;
+}
+.topNavBar a{
+    float: left;
+    display: block;
+    font-size: 24px;
+}
+nav > ul > li{
+    float: right;
+}
+.topNavBar .logo{
+    font-family: 'Arial Black';
+    padding-top: 3px;
+    padding-bottom: 4px;
+    font-size: 24px;
+    font-weight: 100;
+}
+.topNavBar a>.rs{
+    color:#e6686a;
+    margin-right: 12px;
+}
+.topNavBar a>.card{
+    color:#9A9DA2;
+}
+.topNavBar nav>ul>li>a{
+    color:#b7b7b7;
+    font-size: 12px;
+    border-top: 3px solid transparent;
+    border-bottom:3px solid transparent;
+    font-weight:bold;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    display: block;
+}
+.topNavBar nav>ul>li{
+    /* border: 10px solid red; */
+}
+.topNavBar nav>ul>.menutrigger>ul{
+    display: none;
+}
+.topNavBar nav>ul>.menutrigger.active>ul{
+    display: block;
+}
+.topNavBar ul.subMenu li:nth-child(1){
+    margin-top: 3px;
+}
+.topNavBar ul.subMenu li{
+    padding:10px 30px;
+    color: #3c4451;
+    font-size: 14px;
+    background-color: #fff;
+ }
+.topNavBar nav>ul>li>a::after{
+    content:"";
+    position: absolute;
+    top:100%;
+    left:0;
+    height: 3px;
+    background-color: #e06567;
+    width: 0;
+    animation: .5s menuSlideBack;
+}
+.topNavBar nav>ul>li.active>a::after{
+    width: 100%;
+    animation: .5s menuSlide;
+} 
+@keyframes menuSlide{
+    0%{
+        width: 0;
+    }
+    100%{
+        width:100%;
+    }
+}
+@keyframes menuSlideBack{
+    0%{
+        width:100%;
+    }
+    100%{
+        width: 0;
+    }
+}
+.topNavBar nav>ul>li{
+    position: relative;
+}
+.topNavBar nav>ul>li.menutrigger>ul{
+    position: absolute;
+    top:100%;
+    right: 0;
+    white-space: nowrap;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+.topNavBar nav>ul>li.menutrigger>ul>li:hover{
+    color:#e8676b;
+}
+.banner{
+   background-image:url(../img/rs-cover.jpg);
+   background-position:center center;
+   background-size:cover;
+   height: 515px;
+}
+.banner .mask{
+    background-color: rgba(44, 51, 64, 0.8);
+    height: 515px;
+}
+.userCard{
+    max-width:930px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: -345px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+.welcome{
+    background-color: #F65261;
+    color: #FFFFFF;
+    line-height: 22px;
+    padding: 4px 16px;
+    display: inline-block;
+    position: relative;
+}
+.welcome .triangle{
+    width:0px;
+    height:0px;
+    border:10px solid transparent;
+    border-left:10px solid #F65261;
+    border-top-width:0px;
+    position: absolute;
+    top:100%;
+    left:6px;
+    display:block;
+}
+.pictureAndText .picture{
+    float: left;
+}
+.pictureAndText .text{
+    float: left;
+}
+.pictureAndText{
+    padding-left: 50px;
+    padding-top: 57px;
+    padding-bottom: 38px;
+}
+.pictureAndText .picture{
+    margin-right: 63px;
+}
+.text h1{
+    padding-top: 28px;
+}
+.text p{
+    margin-top: 3px;
+}
+.text hr{
+    width: 477px;
+    border: none;
+    border-top:1px solid #E3E3E3;
+    margin: 26px 0px;
+}
+.text dl dt{
+    float: left;
+    width: 26%;
+    font-weight: bold;
+    padding-bottom: 12px;
+}
+.text dl dd{
+    float: left;
+    width: 74%;
+    color:#9da0a7;
+    padding-bottom: 12px;
+}
+.userCard footer.media{
+    background-color: #e6686a;
+    text-align: center;
+    padding: 10px 0px;
+}
+.userCard footer.media svg{
+    width: 44px;
+    height: 22px;
+    fill: white;
+    vertical-align: top;
+    padding: 21px 0px;
+}
+.userCard footer.media a{
+    /* border: 1px solid black; */
+    display: inline-block;
+    border-radius: 50%;
+    line-height:31px; 
+    margin:0px 30px;
+}
+.userCard footer.media a:hover{
+    background-color: #cf5d5f;
+}
+main .downloadResume{
+    font-size: 15px;
+    color: #3d4451;
+    border-radius: 3px;
+    border:1px solid #CDCFD1;
+    padding: 18px 56px;
+    display: inline-block;
+    font-weight: bold;
+    transition: box-shadow 0.2s;
+}
+main .downloadResume:hover{
+    opacity: 0.95;
+    text-decoration: none;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+
+}
+main .downloadResume-wapper{
+    text-align: center;
+    margin-top: 35px;
+}
+.selfIntroduction{
+    text-align: center;
+    font-family: kai;
+    line-height: 1.8;
+    font-size: 18px;
+    max-width:930px;
+    margin:0 auto;
+    margin-top: 34px;
+}
+section.skills{
+    max-width:930px;
+    margin:0 auto;
+    margin-top: 75px;
+}
+section.skills h2{
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 26px;
+}
+section.skills ol{
+    padding: 40px 50px 10px; 
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+    background-color: #fff;
+}
+section.skills .progressBar{
+    height: 5px;
+    background-color: #FEDCE0;
+    border-radius: 5px;
+}
+section.skills li{
+    float: left;
+    width: 400px;
+    height: 65px;
+    box-sizing: border-box;
+    padding: 0px 15px;
+}
+section.skills li:nth-child(even){
+    padding-right: 0px;
+}
+section.skills .progressBar .progress{
+    height: 5px;
+    width: 30%;
+    background-color: #e8676b;
+    border-radius: 5px;
+}
+section.skills li h3{
+    font-size: 14px;
+    color: #3d4451;
+    margin-bottom: 2px;
+}
+ section.portfolio{
+    margin-top: 72px;
+    text-align: center;
+}
+section.portfolio h2{
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 26px;
+}
+section.portfolio nav{
+    /* border: 1px solid red; */
+    display: inline-block;
+    vertical-align: top;
+}
+section.portfolio nav ol{
+    /* border: 1px solid red; */
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 9px;
+    
+}
+section.portfolio nav ol li{
+    float: left;
+    font-size: 13px;
+    padding:0 12px;
+    margin-right:20px;
+    cursor: pointer;
+}
+section.portfolio nav .bar{
+    /* border: 1px solid red; */
+    height: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 30px;
+    
+}
+section.portfolio nav .bar-inner{
+    height: 5px;
+    border-radius: 5px;
+    background-color: #F85062;
+    transition: all 1s;
+}
+section.portfolio nav .bar.state-1 .bar-inner{
+    width: 35px;
+}
+section.portfolio nav .bar.state-2 .bar-inner{
+    margin-left: 57px;
+    width: 51px;
+}
+section.portfolio nav .bar.state-3 .bar-inner{
+    width: 70px;
+    margin-left: 132px;
+}
+section.portfolio nav ol li:first-child{
+    padding-left: 0px;
+}
+section.portfolio nav ol li:last-child{
+    padding-right: 0px;
+    margin-right:0px;
+}
+section.portfolio .works{
+    max-width: 930px;
+    height: 590px;
+    /* border: 1px solid green; */
+    margin: 0 auto;
+    position: relative;
+}
+section.portfolio .works img{
+    position: absolute; 
+    top:0px;left:0px;   
+}
+section.portfolio .works .big{
+    max-width:600px;
+    /* border:1px solid blue; */
+    position: absolute; 
+    /* padding: 0 10px;
+    margin-bottom: 20px; */
+}
+section.portfolio .works .small{
+    max-width:290px;
+    /* border:1px solid blue; */
+    position: absolute; 
+    /* padding: 0 10px;
+    margin-bottom: 20px; */
+}
+section.portfolio .works img{
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
