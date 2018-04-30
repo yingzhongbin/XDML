@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <title>carousel</title>
+    <style>
+        .red{
+            color:red;
+        }
+        .clearfix{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .images img{
+            float: left;
+        }
+        .images{
+            /* transform:translate(-400px); */
+            width:3200px;
+            transition: all 0.5s;
+        }
+        .window{
+            width: 800px;
+            height: 450px;
+            overflow: hidden;
+            border: 5px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="images clearfix" id="images">
+            <img src="img/11.jpg" alt="图片" width="800px" height="450px">
+            <img src="img/12.jpg" alt="图片" width="800px" height="450px">
+            <img src="img/13.jpg" alt="图片" width="800px" height="450px">
+            <img src="img/14.jpg" alt="图片" width="800px" height="450px">
+        </div>
+    </div>
+    <div id="buttons">
+        <button class="red">图片1</button>
+        <button>图片2</button>
+        <button>图片3</button>
+        <button>图片4</button>
+    </div>
+</body>
+    <script>
+        var $buttons = $("#buttons > button");//拿到所有button伪数组
+        var index = 0;//设置初始按钮位置为0
+        var num = 4;//4幅图
+
+        //为每个button添加onclick事件
+        for(let i = 0;i<$buttons.length;i++){
+            let btn = $($buttons[i]);
+            btn.on("click",function(x){
+                index = $(x.currentTarget).index()//得到button的index
+                //设置#images的css变化
+                $("#images").css({
+                    transform: "translate("+(-800*index)+"px)"
+                });
+                //设置点击按钮的红色类
+                $($buttons[index]).addClass("red").siblings().removeClass("red");
+            });
+        }
+        var timer;
+        function slide(){
+            index = index%num;
+            $($buttons[index]).addClass("red").siblings().removeClass("red");
+            $("#images").css({
+                transform: "translate("+(-800*index)+"px)"
+            });
+            index++;
+        }
+        timer = setInterval(slide, 1000);
+        slide();
+        $("#images").on("mouseenter",function(){
+            window.clearInterval(timer);
+            timer = null;//真正清除定时器
+        });
+        $("#images").on("mouseout",function(){
+            timer = setInterval(slide, 1000);
+        });
+    </script>
+    <script src="js/carousel.js"></script>
+</html>

@@ -1,37 +1,44 @@
-var liTags = document.querySelectorAll(".topNavBar nav>ul>li");
-        // console.log(liTags);
-		for(let a = 0;a<liTags.length;a++){
-			liTags[a].onmouseenter = function(e){
-                // console.log(e.currentTarget);
-                e.currentTarget.classList.add("active");
-            }
-        liTags[a].onmouseleave = function(e){
-            //   console.log(e.currentTarget);
-                e.currentTarget.classList.remove("active");
-            }
-        }
-    
+var allButtons = $('#buttons > span')
+
+for (let i = 0; i < allButtons.length; i++) {
+  $(allButtons[i]).on('click', function(x) {
+    console.log('hi')
+    var index = $(x.currentTarget).index()
+    var p = index * -300
+    $('#images').css({
+      transform: 'translate(' + p + 'px)'
+    })
+    n = index
+    allButtons.eq(n)
+      .addClass('red')
+      .siblings('.red').removeClass('red')
+  })
+}
 
 
 
-		window.onscroll = function(e){
-			if(window.scrollY > 0){
-				topNavBar.classList.add("sticky");
-			}else{
-				topNavBar.classList.remove("sticky");
-			}
-			// console.log(window.scrollY);
-		}
-		topNavBar.classList.add();
-		portfolioAll.onclick=function(){
-			portfolioBar.className = "bar state-1";
-		};
-		portfolioFramework.onclick=function(){
-			portfolioBar.className = "bar state-2";
-		};
-		portfolioVallina.onclick=function(){
-			portfolioBar.className = "bar state-3";
-		};
-		setTimeout(function(){
-			siteWelcome.classList.remove("active");
-		},100);
+var n = 0;
+var size = allButtons.length
+allButtons.eq(n % size).trigger('click')
+  .addClass('red')
+  .siblings('.red').removeClass('red')
+
+var timerId = setInterval(() => {
+  n += 1
+  allButtons.eq(n % size).trigger('click')
+    .addClass('red')
+    .siblings('.red').removeClass('red')
+}, 1000)
+
+$('.window').on('mouseenter', function() {
+  window.clearInterval(timerId)
+})
+
+$('.window').on('mouseleave', function() {
+  timerId = setInterval(() => {
+    n += 1
+    allButtons.eq(n % size).trigger('click')
+      .addClass('red')
+      .siblings('.red').removeClass('red')
+  }, 1000)
+})
