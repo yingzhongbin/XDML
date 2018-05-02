@@ -1,0 +1,22 @@
+.window{
+    width:800px;
+    margin:0 auto;
+    height:450px;
+    position: relative;
+    overflow: hidden;
+}
+.images img{
+    position: absolute;
+    top:0;
+    transition: all .5s;
+}
+.leave{
+    left:-100%;
+}
+.stay{
+    left:0;
+    z-index: 1;/*重要，不加会有移动动作bug  */
+}
+.prepare{
+    left:100%;
+}
