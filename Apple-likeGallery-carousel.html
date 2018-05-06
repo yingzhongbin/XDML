@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <title>Apple-likeGallery-carousel</title>
+    <style>
+        .red{
+            color:red;
+        }
+        .clearfix{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .images img{
+            float: left;
+        }
+        .images{
+            width:3680px;
+            transition: all 0.5s;
+        }
+        .window{
+            margin-top: 100px;
+            width: 920px;
+            height: 400px;
+            overflow: hidden;
+        }
+        .slide-wrap{
+            box-shadow: 0 0 3px #AAAAAA;
+            width: 920px;
+            height: 445px;
+            margin: 0 auto;
+        }
+        .buttons{
+            margin: 0 auto;
+            text-align: center;
+            width: 240px;
+            height:45px;
+        }
+        .buttons div{
+            width: 60px;
+            height: 45px;
+            float: left;
+            position: relative;
+            background: url(./img/divider.png) right center no-repeat;
+            text-align: center;
+        }
+        .buttons div img{
+            padding-top: 7px;
+        }
+        .clearfix{
+            content: "";
+            display: block;
+            clear:both;
+        }
+        .buttons div:nth-child(1)::before{
+            content:"";
+            width: 2px;
+            height: 43px;
+            background: url(./img/divider.png) left center no-repeat;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        .button-wrap{
+            background-color: #f2f2f2;
+            border-top: #E0E0E0 1px solid;
+            border-bottom: #FFFFFF 1px solid;
+        }
+        #buttons > div.active{
+            background: url(./img/active_bg.png) center center no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-wrap">
+        <div class="window">
+            <div class="images clearfix" id="images">
+                <img src="img/b1.jpg" alt="图片" width="920px" height="400px">
+                <img src="img/b2.jpg" alt="图片" width="920px" height="400px">
+                <img src="img/b3.jpg" alt="图片" width="920px" height="400px">
+                <img src="img/b4.jpg" alt="图片" width="920px" height="400px">
+            </div>
+        </div>
+        <div class="button-wrap">
+            <div id="buttons" class="buttons">
+                <div class="active">
+                    <img src="img/s1.png" alt="">
+                </div>
+                <div>
+                    <img src="img/s2.png" alt="">
+                </div>
+                <div>
+                    <img src="img/s3.png" alt="">
+                </div>
+                <div>
+                    <img src="img/s4.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+    <script>
+        var $buttons = $("#buttons > div");//拿到所有button伪数组
+        console.log($buttons)
+        var index = 0;//设置初始按钮位置为0
+        var num = 4;//4幅图
+        //为每个button添加onclick事件
+        for(let i = 0;i<$buttons.length;i++){
+            let btn = $($buttons[i]);
+            console.log(btn)
+            btn.on("click",function(x){
+                index = $(x.currentTarget).index()//得到button的index
+                //设置#images的css变化
+                $("#images").css({
+                    transform: "translate("+(-920*index)+"px)"
+                });
+                //设置点击按钮的红色类
+                $($buttons[index]).addClass("active").siblings().removeClass("active");
+            });
+        }
+
+    </script>
+</html>
