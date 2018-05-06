@@ -7,3 +7,5 @@ html.html            简历1.0
 html续.html          入门的html集合
 index.html           简历final
 navigation.html      键盘导航
+popover.html         点击别处关闭浮层
+Apple-likeGallery-carousel.html  苹果风格的轮播

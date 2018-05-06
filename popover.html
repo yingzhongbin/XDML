@@ -7,17 +7,21 @@
 	<style>
 		.popover{
 			border: 1px solid red;
-			display: inline;
+			display: block;
 			white-space: nowrap;
 			padding: 12px;
-			visibility: hidden;
+			display: none;
+			width:40px;
+			position: absolute;
+			left:64px;
+			top:5px;
 		}
 		.popover::before{
 			content:"";
 			border: 8px transparent solid;
 			border-right: 8px red solid;
 			position: absolute;
-			left:50px;
+			left:-16px;
 			top:10px;
 		}
 		.popover::after{
@@ -25,7 +29,7 @@
 			border: 8px transparent solid;
 			border-right: 8px white solid;
 			position: absolute;
-			left:51px;
+			left:-15px;
 			top:10px;
 		}
 		.clickMe{
@@ -73,16 +77,16 @@
 	$wrapper = $("#wrapper");
 	$popover = $("#popover");
 	$clickMe.on("click",function(){
-		$popover.css({
-			visibility:"visible"
-		});
-		setTimeout(() => {
-			$(document).one("click",function(){
-				$popover.css({
-					visibility:"hidden"
-				});
-			})
-		}, 0);
+		console.log($popover.toggle());
+		console.log($("#popover").is(":hidden"))
+		if(!$("#popover").is(":hidden")){
+			setTimeout(() => {
+				$(document).one("click",function(){
+					$popover.hide();
+					console.log("hide")
+				})
+			}, 0);
+		}
 	});
 	
 	
