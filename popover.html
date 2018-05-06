@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>popover</title>
+	<script src="https://cdn.bootcss.com/jquery/1.8.1/jquery.js"></script></script>
+	<style>
+		.popover{
+			border: 1px solid red;
+			display: inline;
+			white-space: nowrap;
+			padding: 12px;
+			visibility: hidden;
+		}
+		.popover::before{
+			content:"";
+			border: 8px transparent solid;
+			border-right: 8px red solid;
+			position: absolute;
+			left:50px;
+			top:10px;
+		}
+		.popover::after{
+			content:"";
+			border: 8px transparent solid;
+			border-right: 8px white solid;
+			position: absolute;
+			left:51px;
+			top:10px;
+		}
+		.clickMe{
+			margin: 10px;
+		}
+		.wrapper{
+			position: relative;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper" id="wrapper">
+		<button id="clickMe" class="clickMe">
+			点我
+		</button>
+		<div id="popover" class="popover">
+			浮层
+		</div>
+	</div>
+</body>
+<!-- <script>
+	//这个方法浪费内存
+	$clickMe = $("#clickMe");
+	$wrapper = $("#wrapper");
+	$popover = $("#popover");
+	$clickMe.on("click",function(){
+		$popover.css({
+			visibility:"visible"
+		});
+		
+	});
+	$wrapper.on("click",function(e){
+		e.stopPropagation();
+	});
+	$(document).on("click",function(){
+		$popover.css({
+			visibility:"hidden"
+		});
+		
+	})
+</script> -->
+<script>
+	//内存使用少it
+	$clickMe = $("#clickMe");
+	$wrapper = $("#wrapper");
+	$popover = $("#popover");
+	$clickMe.on("click",function(){
+		$popover.css({
+			visibility:"visible"
+		});
+		setTimeout(() => {
+			$(document).one("click",function(){
+				$popover.css({
+					visibility:"hidden"
+				});
+			})
+		}, 0);
+	});
+	
+	
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
