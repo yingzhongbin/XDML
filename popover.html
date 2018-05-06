@@ -77,17 +77,18 @@
 	$wrapper = $("#wrapper");
 	$popover = $("#popover");
 	$clickMe.on("click",function(){
-		console.log($popover.toggle());
-		console.log($("#popover").is(":hidden"))
+		$popover.toggle();
 		if(!$("#popover").is(":hidden")){
 			setTimeout(() => {
 				$(document).one("click",function(){
 					$popover.hide();
-					console.log("hide")
 				})
 			}, 0);
 		}
 	});
+	$popover.on("click",function(e){
+		e.stopPropagation();
+	})
 	
 	
 </script>
