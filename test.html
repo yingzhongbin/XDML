@@ -1,45 +1,58 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>JS Bin</title>
-</head>
-<body>
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-</body>
-<script>
- window.jQuery = function(nodeOrSelector){
-    let nodes;
-    if(typeof nodeOrSelector === "string"){
-        nodes = document.querySelectorAll(nodeOrSelector);
-        
-    }else{
-        nodes = nodeOrSelector;
-    }
-    // console.log(nodes);
-    return {
-        element: nodes,
-        addClass: function(value){
-              for(let i = 0;i<nodes.length;i++){
-                nodes[i].classList.add(value);
-              }
-        },
-        setText:function(text){
-            for(let i = 0;i<nodes.length;i++){
-                nodes[i].textContent = text;
+ <html>
+     <head>
+         <meta charset="utf-8" />
+        <style type="text/css">
+            body,
+            html {
+                 margin: 0;
+                 padding: 0;
             }
-            
-        }
-    }
-}
-
-
-
-window.$ = jQuery
-var $div = $('div')
-$div.addClass("red") // 可将所有 div 的 class 添加一个 red
-$div.setText('hi') // 可将所有 div 的 textContent 变为 hi
-</script>
-</html>
+            body>div {
+                position:absolute;
+                 top:100px;
+                left:100px;
+                 width: 100px;
+                 height: 120px;
+                margin: 15px;
+                padding: 20px;
+                 border: 10px solid brown;
+                 overflow: scroll;
+             }
+             body>div>div {
+                height: 416px;
+                 background: yellow;
+             }
+             p{
+                margin: 0; 
+             }
+         </style>
+         <title>title</title>
+     </head>
+     <body>
+         <div>
+            <div>
+                <p>**********</p>
+                 <p>**********</p>
+                 <p>**********</p>
+                <p>**********</p>
+                 <p>**********</p>
+                <p>**********</p>
+                <p>**********</p>
+                 <p>**********</p>
+                <p>**********</p>
+                 <p>**********</p>
+                 <p>**********</p>
+                 <p>**********</p>
+             </div>
+         </div>
+         <script>
+             var oDiv = document.getElementsByTagName("div")[0];
+             oDiv.scrollTop = oDiv.scrollHeight/2;
+            console.log(oDiv.offsetHeight); //180:height+padding+border;
+             console.log(oDiv.clientHeight); //143:padding+height-滚动条(17);
+             console.log(oDiv.scrollHeight); //456:padding+全部内容高度;
+             console.log(oDiv.scrollTop);    //228:可见内容顶部到全部内容顶部的距离;
+        </script>
+     </body>
+ </html>

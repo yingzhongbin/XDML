@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="css/pikachu.css"> -->
+    <title>showPikachu</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        *:before,*:after{
+            box-sizing: border-box;
+        }
+        .preview-wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .code-wrapper,.preview-wrapper{
+            flex: 1;
+            height: 50%;
+            border: 1px solid red;
+        }
+        /* important 不设置的话，container.scrollTop = container.scrollHeight;无法实现 */
+        #code{
+            font-size: 12px;
+            height: 100%;
+            overflow: hidden;
+        }
+        .actions{
+            position: absolute;
+            right: 0;
+            top: 0;
+
+        }
+    </style>
+    <style id="styleTag">
+
+    </style>
+</head>
+<body>
+    <div class="actions">
+        <button data-speed="slow">低速</button>
+        <button data-speed="normal" class="active">中速</button>
+        <button data-speed="fast">高速</button>
+    </div>
+    <div class="code-wrapper">
+        <pre class="code" id="code"></pre>
+    </div>
+    <div class="preview-wrapper">
+        <div class="preview">
+            <div id="pikachu">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="nose"></div>
+                <div class="ridiculousMouth">
+                    <div class="lip left"></div> 
+                    <div class="lip right"></div>
+                    <div class="inner"></div>
+                </div>
+                <div class="cheek left"></div>
+                <div class="cheek right"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/showPikachu.js"></script>
+</html>

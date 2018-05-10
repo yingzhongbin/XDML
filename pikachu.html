@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pikachu</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #FFEC00;
+        }
+        *:before,*:after{
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #pikachu{
+            width: 450px;
+            height: 450px;
+            background-color: #FFEC00;
+            position: relative;
+        }
+        .nose{
+            position: absolute;
+            display: block;
+            border:10px solid transparent;
+            border-top: 10px black solid;
+            margin-top: 134px;
+            left: 50%;
+            margin-left: -11px;
+        }
+        .nose:before{
+            content: "";
+            width: 22px;
+            height: 5px;
+            display: block;
+            border-top-left-radius: 11px 5px;
+            border-top-right-radius: 11px 5px; 
+            background-color: black;
+            top: -15px;
+            left: -11px;
+            position: absolute;
+        }
+        .eye{
+            width: 60px;
+            height: 60px;
+            border: 3px solid black;
+            background-color: #2e2e2e;
+            position: absolute;
+            border-radius: 50%;
+            top:100px;
+        }
+        .cheek{
+            width: 82px;
+            height: 82px;
+            border: 3px solid black;
+            background-color: #F00;
+            position: absolute;
+            border-radius: 50%;
+            top:200px;
+        }
+        .cheek.left{
+            left:50%;
+            margin-left: -198px;
+        }
+        .cheek.right{
+            right:50%;
+            margin-right: -198px;
+        }
+        .eye.left{
+            left:50%;
+            margin-left: -141px;
+        }
+        .eye.right{
+            right:50%;
+            margin-right: -141px;
+        }
+        .eye:after{
+            content: "";
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border: 3px solid black;
+            background-color: #fff;
+            border-radius: 50%;
+            left:6px;
+        }
+        .ridiculousMouth{
+            width: 228px;
+            height: 180px;
+            position: absolute;
+            left: 50%;
+            margin-left: -114px;
+            margin-top: 165px;
+            overflow: hidden;
+            background-color: #FFEC00;
+        }
+        .ridiculousMouth .lip.left{
+            /* content: ""; */
+            width: 80px;
+            height: 25px;
+            border: 3px solid black;
+            border-top:none;
+            border-right: none;
+            border-bottom-left-radius: 66px 24px;
+            background-color: #FFEC00;
+            position: absolute;
+            transform: rotate(-25deg);
+            left:50%;
+            margin-left: -80px;
+            z-index: 1;
+            top:-4px;
+        }
+        .ridiculousMouth .lip.left:before{
+            content: "";
+            width: 40px;
+            height: 20px;
+            display: block;
+            background-color: #FFEC00;
+            position: absolute;
+            top: -16px;
+            left: 0px;
+        }
+        .ridiculousMouth .lip.right:before{
+            content: "";
+            width: 40px;
+            height: 20px;
+            display: block;
+            background-color: #FFEC00;
+            position: absolute;
+            top: -16px;
+            right: 0px;
+        }
+        .ridiculousMouth .lip.right{
+            content: "";
+            width: 80px;
+            height: 25px;
+            border: 3px solid black;
+            border-top:none;
+            border-left: none;
+            border-bottom-right-radius: 66px 24px;
+            background-color: #FFEC00;
+            position: absolute;
+            transform: rotate(25deg);
+            right:50%;
+            margin-right: -80px;
+            z-index: 1;
+            top:-4px;
+        }
+        .ridiculousMouth .inner{
+            width: 228px;
+            height: 800px;
+            position: absolute;
+            background-color: #A80000;
+            margin-top:-645px;
+            border-bottom-left-radius: 118px 800px;
+            border-bottom-right-radius: 118px 800px;
+            border: 4px solid black;
+            overflow: hidden;
+        }
+        .ridiculousMouth .inner:after{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 130px;
+            height: 140px;
+            top: 673px;
+            background-color: #FF485F;
+            left: 50%;
+            margin-left:-65px;
+            border-top-left-radius: 100%;
+            border-top-right-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="pikachu">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="nose"></div>
+        <div class="ridiculousMouth">
+            <div class="lip left"></div> 
+            <div class="lip right"></div>
+            <div class="inner"></div>
+        </div>
+        <div class="cheek left"></div>
+        <div class="cheek right"></div>
+    </div>
+</body>
+</html>
