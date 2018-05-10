@@ -9,6 +9,7 @@
             case "normal":duration = 50;break;
             case "fast":duration = 10;break;
         }
+        $btn.addClass("active").siblings(".active").removeClass("active");
         console.log(duration)
     });
     
