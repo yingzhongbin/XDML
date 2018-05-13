@@ -1,0 +1,21 @@
+
+<title>首页</title>
+<link rel="stylesheet" href="style.css">
+<h5>您的账户余额是<span id="amount">&&&amount&&&</span></h5>
+<button id="button">打钱</button>
+<script>
+	button.addEventListener("click",(e)=>{
+	 	let script = document.createElement("script")
+		 script.src = "/pay";
+		 document.body.appendChild(script)
+		 //删除script标签
+		 script.onload = function(e){
+			 console.dir(e.currentTarget)
+			 e.currentTarget.remove();
+		 }
+		script.onerror = function(e){
+			alert("打钱失败")
+			e.currentTarget.remove();
+		}
+	})
+</script>

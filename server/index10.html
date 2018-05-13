@@ -1,0 +1,34 @@
+
+<title>首页</title>
+<link rel="stylesheet" href="style.css">
+<h5>您的账户余额是<span id="amount">&&&amount&&&</span></h5>
+<button id="button">打钱</button>
+<script>
+	
+	button.addEventListener("click",(e)=>{
+		let script = document.createElement("script")
+		let functionName = "yzb" + parseInt(Math.random()*1000000);
+		window[functionName] = function(result){
+			console.log(result);
+			if(result.success){
+				amount.innerText = result.left;
+
+			}
+		}
+		script.src = "http://frank.com:8002/pay?callback=" + functionName;
+		document.body.appendChild(script)
+		
+		 //删除script标签
+		 script.onload = function(e){
+			 e.currentTarget.remove();
+			 debugger
+			 delete window[functionName];
+		 }
+		script.onerror = function(e){
+			alert("打钱失败")
+			e.currentTarget.remove();
+			debugger
+			delete window[functionName];
+		}
+	})
+</script>

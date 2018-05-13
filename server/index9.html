@@ -1,0 +1,21 @@
+
+<title>首页</title>
+<link rel="stylesheet" href="style.css">
+<h5>您的账户余额是<span id="amount">&&&amount&&&</span></h5>
+<button id="button">打钱</button>
+<script src="https://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script>
+<script>
+	button.addEventListener("click",(e)=>{
+		$.ajax({
+			url: "/pay",
+			jsonp: "callback",
+			dataType: "jsonp",
+			success: function( response ) {
+				console.log(response)
+				if(response.success){
+					amount.innerText = response.left;
+				}
+			}
+		});
+	})
+</script>

@@ -1,0 +1,12 @@
+
+<title>首页</title>
+<link rel="stylesheet" href="style.css">
+<h5>您的账户余额是<span id="amount">100</span></h5>
+<button id="button">付款一块钱</button>
+<script src="main.js"></script>
+<script>
+	button.addEventListener("click",function(){
+		console.log(amount.innerText)
+		amount.innerText = amount.innerText - 1;
+	})
+</script>
