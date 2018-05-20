@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>应忠彬的个人简历</title>
+		<!-- 需要 index2.css -->
+		<link rel="stylesheet" href="css/index2.css">
+		<script src="//at.alicdn.com/t/font_617709_imh848em6cbrcnmi.js"></script>
+		<script src="//at.alicdn.com/t/font_672703_z5510fmtyb2lc8fr.js"></script>
+		<link rel="stylesheet" href="css/swiper-4.2.6.min.css">
+		<link rel="stylesheet" href="css/index3.css">
+		<style>
+			.icon {
+				width: 1em;
+				height: 1em;
+				vertical-align: -0.15em;
+				fill: currentColor;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="siteWelcome active" id="siteWelcome">
+			<div class="loading"></div>
+		</div>
+		<div class="topNavBar" id="topNavBar">
+			<div class="topNavBar-inner clearfix">
+				<a href="#" class="logo">
+					<span class="rs">RS</span><span class="card">card</span>
+				</a>
+				<nav>
+					<ul class="clearfix">
+						<li><a href="#siteAbout">关于</a></li>
+						<li><a href="#siteSkills">技能</a></li>
+						<li class="menutrigger">
+							<a href="#siteWorks">作品</a>
+							<ul class="subMenu">
+								<li>作品1</li>
+								<li>作品2</li>
+								<li>作品3</li>
+							</ul>
+						</li>
+						<li class="menutrigger">
+							<a href="#siteBlogs">博客</a>
+							<ul class="subMenu">
+								<li>博客1</li>
+								<li>博客2</li>
+								<li>博客3</li>
+							</ul>
+						</li>
+						<li><a href="">日历</a></li>
+						<li><a href="">联系方式</a></li>
+						<li><a href="">其他</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="banner">
+			<div class="mask">
+			</div>
+		</div>
+		<main>
+			<div class="userCard" id="siteAbout" data-x>
+				<div class="pictureAndText clearfix">
+					<div class="picture">
+						<img src="./img/avatar.jpg" alt="头像" width="299px" height="347px">
+					</div>
+					<div class="text">
+						<span class="welcome">HELLO
+							<span class="triangle"></span>
+						</span>
+						<h1>应忠彬</h1>
+						<p>前端开发工程师</p>
+						<hr>
+						<dl class="clearfix">
+							<dt>年龄</dt>
+							<dd>26</dd>
+							<dt>所在城市</dt>
+							<dd>台州</dd>
+							<dt>邮箱</dt>
+							<dd>1067339571@qq.com</dd>
+							<dt>手机</dt>
+							<dd>15757166472</dd>
+						</dl>
+					</div>
+				</div>
+				<footer class="media">
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-github"></use>
+						</svg>
+					</a>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-twitter"></use>
+						</svg>
+					</a>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-jirengulogojichu3"></use>
+						</svg>
+					</a>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-weibo"></use>
+						</svg>
+					</a>
+				</footer>
+			</div>
+			<p class="downloadResume-wapper">
+				<a href="resume.pdf" class="downloadResume" download>下载 PDF 简历</a>
+			</p>
+			<p class="selfIntroduction">
+				应忠彬，前端工程师，具有 半年 工作经验，拥有 2个 项目经验<br>
+				技能：前端开发，Rails 开发，Node.js 开发
+			</p>
+		</main>
+		<section class="skills" id="siteSkills" data-x>
+			<h2>技能</h2>
+			<ol class="clearfix">
+				<li>
+					<h3>
+						HTML 5&amp; CSS 3
+					</h3>
+					<div class="progressBar">
+						<div class="progress" style="width:80%"></div>
+					</div>
+				</li>
+				<li>
+					<h3>
+						JavaScript
+					</h3>
+					<div class="progressBar">
+						<div class="progress" style="width:70%"></div>
+					</div>
+				</li>
+				<li>
+					<h3>
+						jQuery
+					</h3>
+					<div class="progressBar">
+						<div class="progress" style="width:70%"></div>
+					</div>
+				</li>
+				<li>
+					<h3>
+						Vue
+					</h3>
+					<div class="progressBar">
+						<div class="progress" style="width:77%"></div>
+					</div>
+				</li>
+				<li>
+					<h3>
+						React
+					</h3>
+					<div class="progressBar">
+						<div class="progress" style="width:70%"></div>
+					</div>
+				</li>
+				<li>
+					<h3>
+						HTTP
+					</h3>
+					<div class="progressBar">
+						<div class="progress" style="width:67%"></div>
+					</div>
+				</li>
+			</ol>
+		</section>
+		<section class="portfolio" id="siteWorks" data-x>
+			<h2>作品集</h2>
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="img/slides.png" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/navigation.png" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/paint.jpg" alt="">
+					</div>
+				</div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+
+				<!-- 如果需要导航按钮 -->
+				<div class="swiper-button-prev">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-arrow-l"></use>
+					</svg>
+				</div>
+				<div class="swiper-button-next">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-arrow-r"></use>
+					</svg>
+				</div>
+			</div>
+		</section>
+		<section id="message">
+			<h2>留言</h2>
+			<ul id="messageList"></ul>
+			<form action="" id="postMessageForm">
+				<label for="name">
+					姓名：<input type="text" name="name" id="">
+				</label><br>
+				<label for="content">
+					内容：<textarea name="content" id="" width="5000px" height="300px"></textarea>
+				</label><br>
+				<input type="submit" value="提交">
+			</form>
+		</section>
+		1<br>
+		1<br>
+		1<br>
+		1<br>
+		1<br>
+		1<br>
+		<script src="js/swiper-4.2.6.min.js"></script>
+		<script src="https://cdn.bootcss.com/tween.js/r14/Tween.min.js"></script>
+		<script src="//cdn1.lncld.net/static/js/3.6.8/av-min.js"></script>
+		<!--模块化 -->
+			<script src="js/sticky-topBar.js"></script>
+			<script src="js/init-swiper.js"></script>
+			<script src="js/auto-to-slideup.js"></script>
+			<script src="js/smooth-navigation.js"></script>
+			<script src="js/index3.js"></script>
+			<script src="js/message.js"></script>
+		</body>
+	</html>
