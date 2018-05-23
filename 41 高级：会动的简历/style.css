@@ -1,0 +1,37 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.token.selector{
+  color:black;
+}
+.token.property{
+  color:black;
+}
+.token.punctuation{
+  color:black;
+}
+.token.comment{
+  color:black;
+}
+#code{
+  height: 100vh;
+  overflow: hidden;
+  margin: 0 4%;
+}
+#paper{
+  margin: 0 4% 0 0;
+  padding:16px;
+  background-color: #303030;
+}
+/* #paper hr{
+  width: 100px;
+  margin-bottom: 20px;
+}
+#paper h1{
+  margin-top: 20px;
+}
+#paper h3{
+  line-height: 20px;
+} */
