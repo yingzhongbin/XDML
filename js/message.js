@@ -7,9 +7,12 @@ AV.init({
 });
 var messageList = document.querySelector("#messageList")
 var myForm = document.getElementById("postMessageForm");
+// console.log(myForm)
 myForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    let content = myForm.querySelector("input[name='content']").value;
+    // console.log(myForm.querySelector("textarea[name='content']"))
+    // console.log(myForm.querySelector("input[name='name']"))
+    let content = myForm.querySelector("textarea[name='content']").value;
     let name = myForm.querySelector("input[name='name']").value;
     
     // 创建Messages表
@@ -23,9 +26,9 @@ myForm.addEventListener("submit", (e) => {
         name:name,
     }).then(function (object) {
         let li = document.createElement("li")
-        li.textContent = content+":   "+name;
+        li.textContent =name + ":   " + content;
         messageList.appendChild(li);
-        myForm.querySelector("input[name='content']").value = "";
+        myForm.querySelector("textarea[name='content']").value = "";
         myForm.querySelector("input[name='name']").value = "";
         // alert('LeanCloud Rocks!');
     })
@@ -36,7 +39,7 @@ query.find().then(function (messages) {
     let content = message.attributes.content
     let name = message.attributes.name
     let li = document.createElement("li")
-    li.textContent = content+":   "+name;
+    li.textContent =name + ":   " + content;
     messageList.appendChild(li);
   });
   return AV.Object.saveAll(todos);
