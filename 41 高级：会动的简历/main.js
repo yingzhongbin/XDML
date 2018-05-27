@@ -56,7 +56,6 @@ body{
 var text2 = `#paper{
   width:44%;
   height:100vh;
-  background-color:white;
   position:fixed;
   right:0;
 }`;
@@ -103,7 +102,6 @@ writeCode("",text,()=>{
     writeCode(text,text2,()=>{
       writeMarkDown("",md,()=>{
         writeCode(text+text2,text3,()=>{
-
         })
       })
     }) 
